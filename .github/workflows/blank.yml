@@ -15,22 +15,44 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    start-runner:
+        timeout-minutes: 5                  # normally it only takes 1-2 minutes
+        name: Start self-hosted EC2 runner   
+        runs-on: ubuntu-latest
+        permissions:
+          actions: write        
+        steps:      
+          - name: Start EC2 runner
+            id: start-ec2-runner
+            uses: NextChapterSoftware/ec2-action-builder@v1.9
+            with:
+              aws_access_key_id: ${{ secrets.DEPLOY_AWS_ACCESS_KEY_ID }}
+              aws_secret_access_key: ${{ secrets.DEPLOY_AWS_SECRET_ACCESS_KEY }}
+              aws_iam_role_arn: "arn:aws:iam::211125572880:user/admin-1"
+              
+              aws_region: "eu-central-1"
+              github_token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+              github_action_runner_version: v2.300.2                  # Optional (default is latest release)
+              github_action_runner_extra_cli_args: "--disableupdate"  # Extra cli args for runner startup command
+              github_job_start_ttl_seconds: 60                        # Optional - (defaults to 0 disabling this feature)
+              github_api_retry_delay: 10                              # Optional - Delay when polling for runner registration (default is 10 seconds)
+              ec2_instance_type: t2.micro
+              ec2_ami_id: ami-0084a47cc718c111a
+ #             ec2_root_disk_size_gb: "100"                 # Optional - (defaults to AMI settings)
+  #            ec2_root_disk_ebs_class: "gp2"               # Optional - Only used with custom volume root size (defaults to gp2)
+              ec2_subnet_id: "subnet-03fb1807ff1b333e0"
+              ec2_security_group_id: "sg-05ab6bde6998ed21a"
+              ec2_instance_ttl: 40                          # Optional - (default is 60 minutes)
+              ec2_spot_instance_strategy: MaxPerformance    # Other options are: None, BestEffort, MaxPerformance 
+              ec2_instance_tags: >                          # Required for IAM role resource permission scoping
+                [
+                  {"Name": "Github Runner", "Value": "deploybot"}
+                ]
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+    run-build:
+        timeout-minutes: 1
+        needs:
+          - start-runner
+        runs-on: ${{ github.run_id }}          
+        steps:              
+          - run: env
