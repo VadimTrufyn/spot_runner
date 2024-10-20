@@ -28,7 +28,7 @@ jobs:
             with:
               aws_access_key_id: ${{ secrets.DEPLOY_AWS_ACCESS_KEY_ID }}
               aws_secret_access_key: ${{ secrets.DEPLOY_AWS_SECRET_ACCESS_KEY }}
-              aws_iam_role_arn: "arn:aws:iam::211125572880:user/admin-1"
+              aws_iam_role_arn: "arn:aws:iam::211125572880:role/Github_tole"
               
               aws_region: "eu-central-1"
               github_token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
