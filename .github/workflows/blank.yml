@@ -42,7 +42,10 @@ jobs:
               ec2_root_disk_ebs_class: "gp2"               # Optional - Only used with custom volume root size (defaults to gp2)
               ec2_subnet_id: "subnet-03fb1807ff1b333e0"
               ec2_security_group_id: "sg-05ab6bde6998ed21a"
-              ec2_instance_ttl: 40                          # Optional - (default is 60 minutes)
+       
+     
+              
+              #ec2_instance_ttl: 40                          # Optional - (default is 60 minutes)
               ec2_spot_instance_strategy: SpotOnly    # Other options are: None, BestEffort, MaxPerformance 
               ec2_instance_tags: >
                 [
