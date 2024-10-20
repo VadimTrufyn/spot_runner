@@ -29,7 +29,8 @@ jobs:
               github_token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
               aws_access_key_id: ${{ secrets.DEPLOY_AWS_ACCESS_KEY_ID }}
               aws_secret_access_key: ${{ secrets.DEPLOY_AWS_SECRET_ACCESS_KEY }}
-              aws_iam_role_arn: "arn:aws:iam::211125572880:role/Github_tole"
+              aws_iam_role_arn: "arn:aws:iam::211125572880:role/GithubActionsEC2Role"
+              c2_iam_instance_profile: "arn:aws:iam::211125572880:instance-profile/GithubActionsEC2Role"
               aws_region: "eu-central-1"
               ec2_instance_type: t2.micro
               ec2_ami_id: ami-0084a47cc718c111a
