@@ -50,7 +50,9 @@ jobs:
           - start-runner
         runs-on: ${{ github.run_id }}          
         steps:              
-          - run: env
+          - run: |
+              echo "hello"
+              docker ps || echo "docker doesn exist"
 
 
 
