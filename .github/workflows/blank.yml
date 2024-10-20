@@ -34,7 +34,7 @@ jobs:
               github_token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
               github_action_runner_version: v2.300.2                  # Optional (default is latest release)
               github_action_runner_extra_cli_args: "--disableupdate"  # Extra cli args for runner startup command
-              github_job_start_ttl_seconds: 60                        # Optional - (defaults to 0 disabling this feature)
+              github_job_start_ttl_seconds: 120                        # Optional - (defaults to 0 disabling this feature)
               github_api_retry_delay: 10                              # Optional - Delay when polling for runner registration (default is 10 seconds)
               ec2_instance_type: t2.micro
               ec2_ami_id: ami-0084a47cc718c111a
