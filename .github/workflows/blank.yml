@@ -44,9 +44,10 @@ jobs:
               ec2_security_group_id: "sg-05ab6bde6998ed21a"
               ec2_instance_ttl: 40                          # Optional - (default is 60 minutes)
               ec2_spot_instance_strategy: MaxPerformance    # Other options are: None, BestEffort, MaxPerformance 
-              ec2_instance_tags: >                          # Required for IAM role resource permission scoping
+              ec2_instance_tags: >
                 [
-                  {"Name": "Github Runner", "Value": "deploybot"}
+                  {"Key": "Name", "Value": "Github Runner"},
+                  {"Key": "Role", "Value": "deploybot"}
                 ]
 
     run-build:
