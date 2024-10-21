@@ -36,7 +36,7 @@ jobs:
               ec2_spot_instance_strategy: SpotOnly    # Other options are: None, BestEffort, MaxPerformance 
               ec2_instance_tags: >
                 [
-                  {"Key": "Role", "Value": "deploybot"}
+                  {"Key": "Owner", "Value": "deploybot"}
                 ]
 
     run-build:
