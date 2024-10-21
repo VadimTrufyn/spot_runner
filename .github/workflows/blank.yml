@@ -25,14 +25,14 @@ jobs:
             uses: NextChapterSoftware/ec2-action-builder@v1.9
             with:
               github_token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-              aws_access_key_id: ${{ secrets.DEPLOY_AWS_ACCESS_KEY_ID }}
-              aws_secret_access_key: ${{ secrets.DEPLOY_AWS_SECRET_ACCESS_KEY }}
+              aws_access_key_id: ${{ secrets.PDEPLOY_AWS_ACCESS_KEY_ID }}
+              aws_secret_access_key: ${{ secrets.PDEPLOY_AWS_SECRET_ACCESS_KEY }}
               aws_iam_role_arn: "arn:aws:iam::211125572880:role/GithubActionsEC2Role"
               aws_region: "eu-central-1"
               ec2_instance_type: t2.micro
               ec2_ami_id: ami-0084a47cc718c111a
-              ec2_subnet_id: "subnet-03fb1807ff1b333e0"
-              ec2_security_group_id: "sg-05ab6bde6998ed21a"
+              ec2_subnet_id: "subnet-00214025aa352bceb"
+              ec2_security_group_id: "sg-042371ae98393282f"
               ec2_instance_ttl: 40                # Optional (default is 60 minutes)
               
               #ec2_instance_ttl: 40                          # Optional - (default is 60 minutes)
