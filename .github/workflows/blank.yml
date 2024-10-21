@@ -26,12 +26,12 @@ jobs:
               github_token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
               aws_access_key_id: ${{ secrets.DEPLOY_AWS_ACCESS_KEY_ID }}
               aws_secret_access_key: ${{ secrets.DEPLOY_AWS_SECRET_ACCESS_KEY }}
-              aws_iam_role_arn: ${{ secrets.DEPLOY_AWS_ROLE }}
+              aws_iam_role_arn: arn:aws:iam::400586321586:role/GithubActionsEC2Role
               aws_region: "eu-central-1"
               ec2_instance_type: t2.micro
               ec2_ami_id: ami-0084a47cc718c111a
-              ec2_subnet_id: "subnet-0cc6926bbc2b5aa43"
-              ec2_security_group_id: "sg-0e0717bd800501d0d"
+              ec2_subnet_id: subnet-0cc6926bbc2b5aa43
+              ec2_security_group_id: sg-0e0717bd800501d0d
               ec2_instance_ttl: 40                # Optional (default is 60 minutes)
               ec2_spot_instance_strategy: SpotOnly    # Other options are: None, BestEffort, MaxPerformance 
               ec2_instance_tags: >
